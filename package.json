@@ -1,0 +1,18 @@
+{
+  "name": "gh-releases",
+  "version": "0.0.1",
+  "repository": "segmentio/gh-releases",
+  "description": "github project releases",
+  "keywords": [
+    "github",
+    "api"
+  ],
+  "dependencies": {
+    "request": "~2.33.0"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "license": "MIT"
+}
