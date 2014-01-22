@@ -4,7 +4,8 @@ var releases = require('..');
 describe('releases(opts, fn)', function(){
   it('should respond with releases', function(done){
     releases({
-      token: process.env.TOKEN,
+      user: process.env.USER,
+      pass: process.env.PASS,
       repo: 'segmentio/accounts'
     }, function(err, releases){
       if (err) return done(err);
