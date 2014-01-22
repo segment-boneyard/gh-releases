@@ -8,8 +8,7 @@ var assert = require('assert');
 /**
  * Fetch releases with `opts`:
  *
- * - `user` github user
- * - `pass` github pass
+ * - `token` github token
  * - `repo` username/project
  *
  * @param {Object} opts
@@ -19,8 +18,7 @@ var assert = require('assert');
 
 module.exports = function(opts, fn){
   assert(opts, 'config required');
-  assert(opts.user, 'github user required');
-  assert(opts.pass, 'github pass required');
+  assert(opts.token, 'github token required');
   assert(opts.repo, 'github repo required');
   tags(opts, fn);
 };
@@ -37,7 +35,7 @@ function tags(pkg, fn) {
     url: url,
     headers: {
       'User-Agent': 'npm',
-      'Authorization': 'Basic ' + new Buffer(auth).toString('base64')
+      'Authorization': 'Bearer ' + pkg.token
     },
     json: true
   };
