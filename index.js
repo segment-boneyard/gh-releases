@@ -28,7 +28,6 @@ module.exports = function(opts, fn){
 
 function tags(pkg, fn) {
   var url = releases(pkg);
-  var auth = pkg.user + ':' + pkg.pass;
 
   var opts = {
     url: url,
