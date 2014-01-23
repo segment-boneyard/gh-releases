@@ -9,6 +9,8 @@ var assert = require('assert');
  * Fetch releases with `opts`:
  *
  * - `token` github token
+ * - `user` github user
+ * - `pass` github pass
  * - `repo` username/project
  *
  * @param {Object} opts
@@ -36,6 +38,7 @@ function tags(pkg, fn) {
   };
 
   if (pkg.token) opts.headers.Authorization = 'Bearer ' + pkg.token;
+  if (pkg.user && pkg.pass) opts.headers.Authorization = 'Basic ' + basic(pkg);
 
   request(opts, function(err, res, body){
     if (err) throw err;
@@ -53,4 +56,12 @@ function tags(pkg, fn) {
 
 function releases(opts) {
   return 'https://api.github.com/repos/' + opts.repo + '/tags';
+}
+
+/**
+ * Return base64 encoded basic auth.
+ */
+
+function basic(opts) {
+  return new Buffer(opts.user + ':' + opts.pass).toString('base64');
 }

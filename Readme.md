@@ -1,7 +1,13 @@
 
 # gh-releases
 
-  meh, fetches tags for a project, pass `.token` and `.repo`.
+
+ Fetch releases with `opts`:
+
+ - `token` github [token]
+ - `user` github [user]
+ - `pass` github [pass]
+ - `repo` username/project
 
 # License
 
