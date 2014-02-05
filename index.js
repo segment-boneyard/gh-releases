@@ -33,7 +33,7 @@ function tags(pkg, fn) {
 
   var opts = {
     url: url,
-    headers: { 'User-Agent': 'npm' },
+    headers: { 'User-Agent': 'gh-lookup' },
     json: true
   };
 
