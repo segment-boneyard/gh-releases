@@ -4,6 +4,7 @@
 
 var request = require('request');
 var assert = require('assert');
+var ms = require('ms');
 
 /**
  * Fetch releases with `opts`:
@@ -45,7 +46,13 @@ function tags(pkg, fn) {
 
     var l = ~~res.headers['x-ratelimit-limit'];
     var n = ~~res.headers['x-ratelimit-remaining'];
-    if (0 == n) return fn(new Error('ratelimit of ' + l + ' requests exceeded'));
+    var r = ~~res.headers['x-ratelimit-reset'];
+
+    if (0 == n) {
+      r = new Date(r * 1000);
+      r = ms(r - new Date, { long: true });
+      return fn(new Error('ratelimit of ' + l + ' requests exceeded, resets in ' + r));
+    }
 
     fn(null, body);
   });
